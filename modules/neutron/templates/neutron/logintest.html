@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+</head>
+<body>
+<label>Email
+    <input type="text" name="email" id="email">
+</label><br>
+<label>Password
+    <input type="password" name="password" id="password">
+</label><br>
+<button onclick="submit()">Send</button><br>
+<pre id="result"></pre>
+<script src="https://unpkg.com/whatwg-fetch@2.0.2/fetch.js"></script>
+<script>
+    function submit() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var data = new FormData();
+        data.append('email', email);
+        data.append('password', password);
+        fetch('/neutron/login', {
+            method: 'POST',
+            body: data
+        }).then(function(result) {
+            return result.text();
+        }).then(function(text) {
+            document.getElementById('result').innerText = text;
+        });
+    }
+</script>
+</body>
+</html>
