@@ -31,7 +31,6 @@ def adfslogin(email, password):
     payload2 = {}
 
     try:
-
         for input in soup2.select('input[type=\'hidden\']'):
             payload2[input['name']] = input['value']
 

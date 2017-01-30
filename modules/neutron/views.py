@@ -1,9 +1,14 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 import json
 from adfslogin import adfslogin, AdfsLoginFailed
 import traceback
 
-neutron = Blueprint('neutron', __name__)
+neutron = Blueprint('neutron', __name__, template_folder='templates')
+
+
+@neutron.route('/loginui')
+def loginui():
+    return render_template('neutron/logintest.html')
 
 
 @neutron.route('/login', methods=['POST'])
